@@ -39,14 +39,16 @@ import { combineReducers } from '@ngrx/store';
  */
 import * as fromMultilingual from '../i18n/index';
 import * as fromSample from '../sample/index';
+import * as collections from "../collections/index"
 
 /**
  * As mentioned, we treat each reducer like a table in a database. This means
  * our top level state interface is just a map of keys to inner state types.
  */
 export interface IAppState {
-  i18n: fromMultilingual.IMultilingualState;
-  sample: fromSample.ISampleState;
+    i18n: fromMultilingual.IMultilingualState;
+    sample: fromSample.ISampleState;
+    collection: collections.ICollectionState;
 }
 
 /**
@@ -57,8 +59,9 @@ export interface IAppState {
  * the result from right to left.
  */
 const reducers = {
-  i18n: fromMultilingual.reducer,
-  sample: fromSample.reducer
+    i18n: fromMultilingual.reducer,
+    sample: fromSample.reducer,
+    collection: collections.reducer
 };
 
 // ensure state is frozen as extra level of security when developing
@@ -82,5 +85,10 @@ export function getNameListState(state$: Observable<IAppState>): Observable<from
   return state$.select(s => s.sample);
 }
 
+export function getCollectionListState(state$: Observable<IAppState>): Observable<collections.ICollectionState> {
+    return state$.select(s => s.collection);
+}
+
 export const getLang: any = compose(fromMultilingual.getLang, getMultilingualState);
 export const getNames: any = compose(fromSample.getNames, getNameListState);
+export const getCollections: any = compose(collections.getCollections, getCollectionListState);

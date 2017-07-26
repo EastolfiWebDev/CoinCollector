@@ -18,6 +18,11 @@
   <li *ngFor="let name of (names$ | async)">{{name}}</li>
 </ul>
 
+Collections:
+<ul>
+    <li *ngFor="let collection of (collections$ | async)">{{collection.name}}</li>
+</ul>
+
 <p>
   <a class="link" (click)="readAbout()">About - RouterExtensions example</a>
 </p>

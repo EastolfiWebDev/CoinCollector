@@ -23,6 +23,7 @@ import { CoreModule } from './app/modules/core/core.module';
 import { AnalyticsModule } from './app/modules/analytics/analytics.module';
 import { MultilingualModule, translateLoaderFactory } from './app/modules/i18n/multilingual.module';
 import { SampleModule } from './app/modules/sample/sample.module';
+import { CollectionModule } from "./app/modules/collections/collection.module";
 import { ConsoleService, ConsoleTarget, LogLevel } from './app/modules/core/index';
 
 // intermediate component module
@@ -37,7 +38,7 @@ import { ConsoleService, ConsoleTarget, LogLevel } from './app/modules/core/inde
             deps: [Http],
             useFactory: (translateLoaderFactory)
         }]),
-        SampleModule,
+        SampleModule, CollectionModule,
         NativeScriptModule,
         NativeScriptFormsModule,
         NativeScriptHttpModule,
@@ -57,7 +58,7 @@ import { ConsoleService, ConsoleTarget, LogLevel } from './app/modules/core/inde
         AppComponent,
         AnalyticsModule,
         CoreModule,
-        SampleModule,
+        SampleModule, CollectionModule,
         NativeScriptModule,
         NativeScriptFormsModule,
         NativeScriptHttpModule,

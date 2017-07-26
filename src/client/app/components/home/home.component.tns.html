@@ -1,24 +1,60 @@
-<StackLayout>
-  <StackLayout class="p-10">
-    <Label [text]="'LOVE_TECH' | translate" textWrap="true" class="love-tech"></Label>
-    <Label [text]="'SUCCESS_MSG' | translate" textWrap="true"></Label>
-    <Label [text]="'ABOUT_REWARD' | translate" textWrap="true"></Label>
-  </StackLayout>
-
-  <StackLayout class="form">
-    <StackLayout class="input-field">
-      <TextField [(ngModel)]="newName" [hint]="'INPUT_HINT' | translate" autocorrect="false" autocapitalizationType="none" class="input"></TextField>
+<!-- <StackLayout>
+    <StackLayout class="p-10">
+        <Label [text]="'LOVE_TECH' | translate" textWrap="true" class="love-tech"></Label>
+        <Label [text]="'SUCCESS_MSG' | translate" textWrap="true"></Label>
+        <Label [text]="'ABOUT_REWARD' | translate" textWrap="true"></Label>
     </StackLayout>
-  </StackLayout>
-  <Button [text]="'ADD_BTN_TEXT' | translate" (tap)="addName()" class="btn btn-primary"></Button>
 
-  <ListView [items]="names$ | async" row="1" colSpan="2" height="250" class="list-group">
-    <ng-template let-name="item" let-odd="odd" let-even="even">
-      <StackLayout [class.odd]="odd" [class.even]="even" class="list-group-item">
-        <Label [text]="name"></Label>
-      </StackLayout>
-    </ng-template>
-  </ListView>
+    <StackLayout class="form">
+        <StackLayout class="input-field">
+            <TextField [(ngModel)]="newName" [hint]="'INPUT_HINT' | translate" autocorrect="false" autocapitalizationType="none" class="input"></TextField>
+        </StackLayout>
+    </StackLayout>
+    <Button [text]="'ADD_BTN_TEXT' | translate" (tap)="addName()" class="btn btn-primary"></Button>
 
-  <Button (tap)="readAbout()" text="Read all about it" class="btn btn-outline"></Button>
-</StackLayout>
+    <ListView [items]="collections$ | async" row="1" colSpan="2" height="250" class="list-group">
+        <ng-template let-collection="item" let-odd="odd" let-even="even">
+            <StackLayout [class.odd]="odd" [class.even]="even" class="list-group-item">
+                <Label [text]="collection.name"></Label>
+            </StackLayout>
+        </ng-template>
+    </ListView>
+
+    <Button (tap)="readAbout()" text="Read all about it" class="btn btn-outline"></Button>
+</StackLayout> -->
+
+
+
+<ScrollView>
+    <FlexboxLayout flexDirection="column" class="m-15">
+        <FlexboxLayout flexDirection="column">
+            <Label text="Colección" class="h2"></Label>
+            <!-- <DropDown class="h3" #dd backroundColor="red" [items]="collectionsDD" [selectedIndex]="selectedCollection"
+                (selectedIndexChanged)="onChangeCollection($event)"></DropDown> -->
+            <Label text="Nueva Lista" *ngIf="newList"></Label>
+        </FlexboxLayout>
+        <FlexboxLayout flexDirection="column">
+            <Label text="Imagen" class="h2"></Label>
+            <Button class="btn btn-primary btn-active" text="Foto" (tap)="takePhoto()"></Button>
+
+            <!-- <Image [src]="image" flexGrow="3" class="p-15 img-rounded"></Image> -->
+        </FlexboxLayout>
+        <FlexboxLayout flexDirection="row">
+            <FlexboxLayout flexDirection="column" flexGrow="1">
+                <Label text="País" class="h2"></Label>
+                <!-- <TextField [(ngModel)]="collectionItem.country"></TextField> -->
+            </FlexboxLayout>
+            <FlexboxLayout flexDirection="column" flexGrow="1">
+                <Label text="Valor" class="h2"></Label>
+                <!-- <TextField [(ngModel)]="collectionItem.value"></TextField> -->
+            </FlexboxLayout>
+        </FlexboxLayout>
+        <FlexboxLayout flexDirection="column">
+            <Label text="Descripción" class="h2"></Label>
+            <!-- <TextView [(ngModel)]="collectionItem.description"></TextView> -->
+        </FlexboxLayout>
+        <FlexboxLayout flexDirection="row">
+            <Button class="btn btn-primary btn-active" flexGrow="1" text="Guardar" (tap)="save()"></Button>
+        </FlexboxLayout>
+    </FlexboxLayout>
+</ScrollView>

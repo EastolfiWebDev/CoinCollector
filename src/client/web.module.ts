@@ -21,6 +21,7 @@ import { CoreModule, Config } from './app/modules/core/index';
 import { AnalyticsModule } from './app/modules/analytics/index';
 import { MultilingualModule, Languages, translateLoaderFactory, MultilingualEffects } from './app/modules/i18n/index';
 import { SampleModule, SampleEffects } from './app/modules/sample/index';
+import { CollectionModule, CollectionEffects } from "./app/modules/collections/index";
 import { AppReducer } from './app/modules/ngrx/index';
 
 import { DatabaseService } from "./app/modules/shared/database/firebase/database.service";
@@ -82,11 +83,12 @@ if (String('<%= BUILD_TYPE %>') === 'dev') {
             deps: [Http],
             useFactory: (translateLoaderFactory)
         }]),
-        SampleModule,
+        SampleModule, CollectionModule,
         // configure app state
         StoreModule.provideStore(AppReducer),
         EffectsModule.run(MultilingualEffects),
         EffectsModule.run(SampleEffects),
+        EffectsModule.run(CollectionEffects),
         // dev environment only imports
         DEV_IMPORTS,
     ],
