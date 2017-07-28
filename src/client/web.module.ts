@@ -23,6 +23,9 @@ import { MultilingualModule, Languages, translateLoaderFactory, MultilingualEffe
 import { SampleModule, SampleEffects } from './app/modules/sample/index';
 import { AppReducer } from './app/modules/ngrx/index';
 
+import { DatabaseService } from "./app/modules/shared/database/firebase/database.service";
+import { WebDatabaseService } from "./app/modules/core/services/database/firebase/database.service";
+
 // config
 Config.PLATFORM_TARGET = Config.PLATFORMS.WEB;
 if (String('<%= BUILD_TYPE %>') === 'dev') {
@@ -99,7 +102,8 @@ if (String('<%= BUILD_TYPE %>') === 'dev') {
     {
       provide: Languages,
       useValue: Config.GET_SUPPORTED_LANGUAGES()
-    }
+  },
+  { provide: DatabaseService, useClass: WebDatabaseService }
   ],
   bootstrap: [AppComponent]
 })

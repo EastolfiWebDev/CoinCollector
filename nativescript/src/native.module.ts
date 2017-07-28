@@ -34,6 +34,9 @@ import { ComponentsModule, cons, consoleLogTarget } from './components.module';
 import { WindowNative, StorageNative, NSAppService } from './mobile/core/index';
 import { NS_ANALYTICS_PROVIDERS } from './mobile/analytics/index';
 
+import { DatabaseService } from "./app/modules/shared/database/firebase/database.service";
+import { NativeDatabaseService } from "./mobile/core/services/database/firebase/database.service";
+
 /**
  * Config
  * Seed provided configuration options
@@ -83,7 +86,8 @@ export function segmentViewHelper(languages) {
     { provide: AppService, useClass: NSAppService },
     // i18n
     { provide: Languages, useValue: Config.GET_SUPPORTED_LANGUAGES() },
-    { provide: LanguageViewHelper, deps: [Languages], useFactory: (segmentViewHelper) }
+    { provide: LanguageViewHelper, deps: [Languages], useFactory: (segmentViewHelper) },
+    { provide: DatabaseService, useClass: NativeDatabaseService }
   ],
   schemas: [
     NO_ERRORS_SCHEMA,
