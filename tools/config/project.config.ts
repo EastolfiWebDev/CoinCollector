@@ -1,6 +1,6 @@
 import { join } from 'path';
 import { SeedAdvancedConfig } from './seed-advanced.config';
-// import { ExtendPackages } from './seed.config.interfaces';
+import { ExtendPackages } from './seed.config.interfaces';
 
 /**
  * This class extends the basic seed configuration, allowing for project specific overrides. A few examples can be found
@@ -42,13 +42,19 @@ export class ProjectConfig extends SeedAdvancedConfig {
 
     // Add packages (e.g. ng2-translate)
     // ng2-translate is already added with the advanced seed - here for example only
-    // let additionalPackages: ExtendPackages[] = [{
-    //   name: 'ng2-translate',
-    //   // Path to the package's bundle
-    //   path: 'node_modules/ng2-translate/bundles/ng2-translate.umd.js'
-    // }];
-    //
-    // this.addPackagesBundles(additionalPackages);
+    let additionalPackages: ExtendPackages[] = [{
+      name: "firebase",
+      // Path to the package's bundle
+      path: "node_modules/firebase/firebase.js"
+    }];
+    
+    this.addPackagesBundles(additionalPackages);
+    
+    // Desktop packages
+    this.DESKTOP_PACKAGES = [
+        ...this.DESKTOP_PACKAGES,
+        ...additionalPackages
+    ];
 
     /* Add proxy middleware */
     // this.PROXY_MIDDLEWARE = [

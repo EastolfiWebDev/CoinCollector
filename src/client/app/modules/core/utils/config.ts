@@ -3,6 +3,7 @@
 export interface EnvConfig {
   API?: string;
   ENV?: string;
+  FIREBASE?: any;
 }
 
 export interface IPlatforms {

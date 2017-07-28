@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "682743905342",
+    "firebase_url": "https://coincollector-947a3.firebaseio.com",
+    "project_id": "coincollector-947a3",
+    "storage_bucket": "coincollector-947a3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:682743905342:android:bd2931a0a67d7aac",
+        "android_client_info": {
+          "package_name": "es.edu.android.CoinCollector"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "682743905342-jtam89af6mtt5cgk2gebs3st8lmai2tl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAP9K4PRFK8Kq-adST1XPik2x3chUipDVg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:682743905342:android:57710297099ca8d6",
+        "android_client_info": {
+          "package_name": "com.yourdomain.nativescript"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "682743905342-jtam89af6mtt5cgk2gebs3st8lmai2tl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAP9K4PRFK8Kq-adST1XPik2x3chUipDVg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
