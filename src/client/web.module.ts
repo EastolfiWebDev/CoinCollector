@@ -29,83 +29,83 @@ import { WebDatabaseService } from "./app/modules/core/services/database/firebas
 // config
 Config.PLATFORM_TARGET = Config.PLATFORMS.WEB;
 if (String('<%= BUILD_TYPE %>') === 'dev') {
-  // only output console logging in dev mode
-  Config.DEBUG.LEVEL_4 = true;
+    // only output console logging in dev mode
+    Config.DEBUG.LEVEL_4 = true;
 }
 
 let routerModule = RouterModule.forRoot(routes);
 
 if (String('<%= TARGET_DESKTOP %>') === 'true') {
-  Config.PLATFORM_TARGET = Config.PLATFORMS.DESKTOP;
-  // desktop (electron) must use hash
-  routerModule = RouterModule.forRoot(routes, { useHash: true });
+    Config.PLATFORM_TARGET = Config.PLATFORMS.DESKTOP;
+    // desktop (electron) must use hash
+    routerModule = RouterModule.forRoot(routes, { useHash: true });
 }
 
 declare var window, console, localStorage;
 
 // For AoT compilation to work:
 export function win() {
-  return window;
+    return window;
 }
 export function storage() {
-  return localStorage;
+    return localStorage;
 }
 export function cons() {
-  return console;
+    return console;
 }
 export function consoleLogTarget(consoleService: ConsoleService) {
-  return new ConsoleTarget(consoleService, { minLogLevel: LogLevel.Debug });
+    return new ConsoleTarget(consoleService, { minLogLevel: LogLevel.Debug });
 }
 
 let DEV_IMPORTS: any[] = [];
 
 if (String('<%= BUILD_TYPE %>') === 'dev') {
-  DEV_IMPORTS = [
-    ...DEV_IMPORTS,
-    StoreDevtoolsModule.instrumentOnlyWithExtension()
-  ];
+    DEV_IMPORTS = [
+        ...DEV_IMPORTS,
+        StoreDevtoolsModule.instrumentOnlyWithExtension()
+    ];
 }
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    CoreModule.forRoot([
-      { provide: WindowService, useFactory: (win) },
-      { provide: StorageService, useFactory: (storage) },
-      { provide: ConsoleService, useFactory: (cons) },
-      { provide: LogTarget, useFactory: (consoleLogTarget), deps: [ConsoleService], multi: true }
-    ]),
-    routerModule,
-    AnalyticsModule,
-    MultilingualModule.forRoot([{
-      provide: TranslateLoader,
-      deps: [Http],
-      useFactory: (translateLoaderFactory)
-    }]),
-    SampleModule,
-    // configure app state
-    StoreModule.provideStore(AppReducer),
-    EffectsModule.run(MultilingualEffects),
-    EffectsModule.run(SampleEffects),
-    // dev environment only imports
-    DEV_IMPORTS,
-  ],
-  declarations: [
-    APP_COMPONENTS
-  ],
-  providers: [
-    {
-      provide: APP_BASE_HREF,
-      useValue: '<%= APP_BASE %>'
-    },
-    // override with supported languages
-    {
-      provide: Languages,
-      useValue: Config.GET_SUPPORTED_LANGUAGES()
-  },
-  { provide: DatabaseService, useClass: WebDatabaseService }
-  ],
-  bootstrap: [AppComponent]
+    imports: [
+        BrowserModule,
+        CoreModule.forRoot([
+            { provide: WindowService, useFactory: (win) },
+            { provide: StorageService, useFactory: (storage) },
+            { provide: ConsoleService, useFactory: (cons) },
+            { provide: LogTarget, useFactory: (consoleLogTarget), deps: [ConsoleService], multi: true }
+        ]),
+        routerModule,
+        AnalyticsModule,
+        MultilingualModule.forRoot([{
+            provide: TranslateLoader,
+            deps: [Http],
+            useFactory: (translateLoaderFactory)
+        }]),
+        SampleModule,
+        // configure app state
+        StoreModule.provideStore(AppReducer),
+        EffectsModule.run(MultilingualEffects),
+        EffectsModule.run(SampleEffects),
+        // dev environment only imports
+        DEV_IMPORTS,
+    ],
+    declarations: [
+        APP_COMPONENTS
+    ],
+    providers: [
+        {
+            provide: APP_BASE_HREF,
+            useValue: '<%= APP_BASE %>'
+        },
+        // override with supported languages
+        {
+            provide: Languages,
+            useValue: Config.GET_SUPPORTED_LANGUAGES()
+        },
+        { provide: DatabaseService, useClass: WebDatabaseService }
+    ],
+    bootstrap: [AppComponent]
 })
 
 export class WebModule { }

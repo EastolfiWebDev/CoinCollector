@@ -1,7 +1,7 @@
 // nativescript
 import {
-  NativeScriptRouterModule,
-  RouterExtensions as TNSRouterExtensions
+    NativeScriptRouterModule,
+    RouterExtensions as TNSRouterExtensions
 } from 'nativescript-angular/router';
 import { SegmentedBarItem } from 'tns-core-modules/ui/segmented-bar';
 
@@ -14,11 +14,11 @@ import { EffectsModule } from '@ngrx/effects';
 
 // app
 import {
-  WindowService,
-  StorageService,
-  ConsoleService,
-  RouterExtensions,
-  AppService
+    WindowService,
+    StorageService,
+    ConsoleService,
+    RouterExtensions,
+    AppService
 } from './app/modules/core/index';
 import { AppComponent } from './app/components/app.component';
 import { routes } from './app/components/app.routes';
@@ -38,9 +38,9 @@ import { DatabaseService } from "./app/modules/shared/database/firebase/database
 import { NativeDatabaseService } from "./mobile/core/services/database/firebase/database.service";
 
 /**
- * Config
- * Seed provided configuration options
- */
+* Config
+* Seed provided configuration options
+*/
 import { Config, LogTarget } from './app/modules/core/index';
 import { Page } from 'ui/page';
 Config.PageClass = Page;
@@ -55,44 +55,44 @@ import { Languages, LanguageViewHelper } from './app/modules/i18n/index';
 
 // helper for SegmentedBar view bindings in lang-switcher shared component
 export function segmentViewHelper(languages) {
-  let segmentItems = [];
-  for (let lang of languages) {
-    // {N} requires items to be SegmentedBarItem class
-    let item = new SegmentedBarItem();
-    item.title = lang.title;
-    (<any>item).code = lang.code;
-    segmentItems.push(item);
-  }
-  return segmentItems;
+    let segmentItems = [];
+    for (let lang of languages) {
+        // {N} requires items to be SegmentedBarItem class
+        let item = new SegmentedBarItem();
+        item.title = lang.title;
+        (<any>item).code = lang.code;
+        segmentItems.push(item);
+    }
+    return segmentItems;
 }
 
 @NgModule({
-  imports: [
-    CoreModule.forRoot([
-      { provide: WindowService, useClass: WindowNative },
-      { provide: StorageService, useClass: StorageNative },
-      { provide: ConsoleService, useFactory: (cons) },
-      { provide: LogTarget, multi: true, deps: [ConsoleService], useFactory: (consoleLogTarget) }
-    ]),
-    ComponentsModule,
-    NativeScriptRouterModule.forRoot(<any>routes),
-    StoreModule.provideStore(AppReducer),
-    EffectsModule.run(MultilingualEffects),
-    EffectsModule.run(SampleEffects)
-  ],
-  providers: [
-    NS_ANALYTICS_PROVIDERS,
-    { provide: RouterExtensions, useClass: TNSRouterExtensions },
-    { provide: AppService, useClass: NSAppService },
-    // i18n
-    { provide: Languages, useValue: Config.GET_SUPPORTED_LANGUAGES() },
-    { provide: LanguageViewHelper, deps: [Languages], useFactory: (segmentViewHelper) },
-    { provide: DatabaseService, useClass: NativeDatabaseService }
-  ],
-  schemas: [
-    NO_ERRORS_SCHEMA,
-    CUSTOM_ELEMENTS_SCHEMA
-  ],
-  bootstrap: [AppComponent]
+    imports: [
+        CoreModule.forRoot([
+            { provide: WindowService, useClass: WindowNative },
+            { provide: StorageService, useClass: StorageNative },
+            { provide: ConsoleService, useFactory: (cons) },
+            { provide: LogTarget, multi: true, deps: [ConsoleService], useFactory: (consoleLogTarget) }
+        ]),
+        ComponentsModule,
+        NativeScriptRouterModule.forRoot(<any>routes),
+        StoreModule.provideStore(AppReducer),
+        EffectsModule.run(MultilingualEffects),
+        EffectsModule.run(SampleEffects)
+    ],
+    providers: [
+        NS_ANALYTICS_PROVIDERS,
+        { provide: RouterExtensions, useClass: TNSRouterExtensions },
+        { provide: AppService, useClass: NSAppService },
+        // i18n
+        { provide: Languages, useValue: Config.GET_SUPPORTED_LANGUAGES() },
+        { provide: LanguageViewHelper, deps: [Languages], useFactory: (segmentViewHelper) },
+        { provide: DatabaseService, useClass: NativeDatabaseService }
+    ],
+    schemas: [
+        NO_ERRORS_SCHEMA,
+        CUSTOM_ELEMENTS_SCHEMA
+    ],
+    bootstrap: [AppComponent]
 })
 export class NativeModule { }

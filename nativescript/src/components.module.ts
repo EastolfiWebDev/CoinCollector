@@ -29,48 +29,48 @@ import { ConsoleService, ConsoleTarget, LogLevel } from './app/modules/core/inde
 // helps encapsulate custom native modules in with the components
 // note: couple ways this could be done, just one option presented here...
 @NgModule({
-  imports: [
-    AnalyticsModule,
-    CoreModule,
-    MultilingualModule.forRoot([{
-      provide: TranslateLoader,
-      deps: [Http],
-      useFactory: (translateLoaderFactory)
-    }]),
-    SampleModule,
-    NativeScriptModule,
-    NativeScriptFormsModule,
-    NativeScriptHttpModule,
-    NativeScriptRouterModule,
-  ],
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    AboutComponent
-  ],
-  schemas: [
-    NO_ERRORS_SCHEMA,
-    CUSTOM_ELEMENTS_SCHEMA
-  ],
-  exports: [
-    MultilingualModule,
-    AppComponent,
-    AnalyticsModule,
-    CoreModule,
-    SampleModule,
-    NativeScriptModule,
-    NativeScriptFormsModule,
-    NativeScriptHttpModule,
-    NativeScriptRouterModule,
-  ]
+    imports: [
+        AnalyticsModule,
+        CoreModule,
+        MultilingualModule.forRoot([{
+            provide: TranslateLoader,
+            deps: [Http],
+            useFactory: (translateLoaderFactory)
+        }]),
+        SampleModule,
+        NativeScriptModule,
+        NativeScriptFormsModule,
+        NativeScriptHttpModule,
+        NativeScriptRouterModule,
+    ],
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        AboutComponent
+    ],
+    schemas: [
+        NO_ERRORS_SCHEMA,
+        CUSTOM_ELEMENTS_SCHEMA
+    ],
+    exports: [
+        MultilingualModule,
+        AppComponent,
+        AnalyticsModule,
+        CoreModule,
+        SampleModule,
+        NativeScriptModule,
+        NativeScriptFormsModule,
+        NativeScriptHttpModule,
+        NativeScriptRouterModule,
+    ]
 })
 export class ComponentsModule { }
 
 // For AoT compilation to work:
 export function cons() {
-  return console;
+    return console;
 }
 
 export function consoleLogTarget(service: ConsoleService) {
-  return new ConsoleTarget(service, { minLogLevel: LogLevel.Debug });
+    return new ConsoleTarget(service, { minLogLevel: LogLevel.Debug });
 }
