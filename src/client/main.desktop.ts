@@ -108,6 +108,15 @@ app.on('ready', () => {
         }
       }]
   };
+  
+  if (process.env.NODE_ENV === 'development') {
+    helpMenu.submenu.push({
+        label: "Open Dev Tools",
+        click: () => {
+            mainWindow.toggleDevTools();
+        }
+    });
+  }
 
   if (process.platform === 'darwin') {
     template = [{
