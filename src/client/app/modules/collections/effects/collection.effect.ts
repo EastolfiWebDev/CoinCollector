@@ -21,17 +21,16 @@ export class CollectionEffects {
             })
             .catch(() => Observable.of(new CollectionList.InitFailedAction()));
     
-    @Effect() add$: Observable<Action> =
+    @Effect() add$: Observable<Action> = 
         this.actions$
             .ofType(CollectionList.ActionTypes.ADD)
-            .map(action => {
-                let collection = action.payload;
-                
+            .switchMap(action => this.collectionListService.addCollection(action.payload))
+            .map(collection => {
                 this.collectionListService.track(CollectionList.ActionTypes.COLLECTION_ADDED, { label: collection.name });
                 
                 return new CollectionList.CollectionAddedAction(collection);
             });
-    
+            
     constructor(
         private store: Store<any>,
         private actions$: Actions,

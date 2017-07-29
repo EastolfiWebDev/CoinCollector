@@ -1,5 +1,8 @@
 import { Action } from '@ngrx/store';
+
 import { type } from '../../core/utils/index';
+
+import { Collection } from "../models/collection";
 
 export namespace CollectionList {
     export const CATEGORY: string = "CollectionList";
@@ -39,13 +42,13 @@ export namespace CollectionList {
     export class AddAction implements Action {
         type = ActionTypes.ADD;
   
-        constructor(public payload: string) { }
+        constructor(public payload: Collection) { }
     }
   
     export class CollectionAddedAction implements Action {
         type = ActionTypes.COLLECTION_ADDED;
   
-        constructor(public payload: string) { }
+        constructor(public payload: Collection) { }
     }
     
     export type Actions =

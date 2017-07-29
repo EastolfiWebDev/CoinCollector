@@ -1,11 +1,13 @@
 import { Observable } from 'rxjs/Observable';
 
+import { Collection } from "../models/collection";
+
 export interface ICollectionState {
-    collections: Array<any>;
+    collections: Array<Collection>;
 }
 
 export const collectionInitialState: ICollectionState = {
-    collections: <Array<any>>[]
+    collections: <Array<Collection>>[]
 }
 
 // selects specific slice from sample state
