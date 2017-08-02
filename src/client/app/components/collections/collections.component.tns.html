@@ -1,0 +1,7 @@
+<ListView [items]="collections$ | async">
+    <ng-template let-collection="item">
+        <StackLayout>
+            <Label [text]="collection.name"></Label>
+        </StackLayout>
+    </ng-template>
+</ListView>

@@ -17,6 +17,7 @@ import { AppComponent } from './app/components/app.component';
 import { AboutComponent } from './app/components/about/about.component';
 import { HomeComponent } from './app/components/home/home.component';
 import { routes } from './app/components/app.routes';
+import { CollectionsComponent } from "./app/components/collections/collections.component";
 
 // feature modules
 import { CoreModule } from './app/modules/core/core.module';
@@ -47,7 +48,8 @@ import { ConsoleService, ConsoleTarget, LogLevel } from './app/modules/core/inde
     declarations: [
         AppComponent,
         HomeComponent,
-        AboutComponent
+        AboutComponent,
+        CollectionsComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA,
